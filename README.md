@@ -27,7 +27,13 @@ You will need to install the BayesTraits executable from (here)[http://www.evolu
 **todo: reference and outgroup genomes**
 
 ## 2. Run ARETE
-`nextflow run arete/ --input_sample_table data/samplesheet.py --reference_genome data/Efaecium_DO.fasts --outgroup_genome data/ehirae.fasta`
+Requires Nextflow, Singularity.<br>
+```
+nextflow run arete/ --input_sample_table data/samplesheet.py --reference_genome data/Efaecium_DO.fasts --outgroup_genome data/ehirae.fasta -entry assembly -profile singularity
+mv results assembly
+python filter_assemblies.py
+nextflow run arete/ --input_sample_table data/assemmblysheet.py --reference_genome data/Efaecium_DO.fasts --outgroup_genome data/ehirae.fasta -entry annotation -profile singularity
+```
 
 ## 3. Run data post-processing scripts
 1. filter_sort_concat.py
